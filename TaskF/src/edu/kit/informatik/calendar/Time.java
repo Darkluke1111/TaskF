@@ -70,5 +70,49 @@ public final class Time {
     	return new Time(resHour, resMinute, resSecond);
     }
     
+    public boolean isBefore (Time other) {
+    	boolean b;
+    	if(this.hour < other.hour) {
+    		b = true;
+    	}
+    	else if(this.hour == other.hour && this.minute < other.minute) {
+    		b = true;
+    	}
+    	else if(this.hour == other.hour && this.minute == other.minute && this.second < other.second) {
+    		b = true;
+    	}
+    	else {
+    		b = false;
+    	}
+    	return b;
+    }
+    
+    public boolean isEqual (Time other) {
+    	boolean b;
+    	if(this.hour == other.hour && this.minute == other.minute && this.second == other.second) {
+    		b = true;
+    	}
+    	else {
+    		b = false;
+    	}
+    	return b;
+    }
+    
+    public boolean isAfter (Time other) {
+    	boolean b;
+    	if(this.hour > other.hour) {
+    		b = true;
+    	}
+    	else if(this.hour == other.hour && this.minute > other.minute) {
+    		b = true;
+    	}
+    	else if(this.hour == other.hour && this.minute == other.minute && this.second > other.second) {
+    		b = true;
+    	}
+    	else {
+    		b = false;
+    	}
+    	return b;
+    }
     
 }

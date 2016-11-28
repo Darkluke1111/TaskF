@@ -98,6 +98,33 @@ public final class DateTime {
     	return new DateTime(d, this.time);
     }
     
+    public boolean isBefore (DateTime other) {
+    	boolean b;
+    	
+    	if(date.isBefore(other.date) && time.isBefore(other.time)) b = true;
+    	else b = false;
+    	
+    	return b;
+    }
+    
+    public boolean isEqual (DateTime other) {
+    	boolean b;
+    	
+    	if(date.isEqual(other.date) && time.isEqual(other.time)) b = true;
+    	else b = false;
+    	
+    	return b;
+    }
+    
+    public boolean isAfter (DateTime other) {
+    	boolean b;
+    	
+    	if(date.isAfter(other.date) && time.isAfter(other.time)) b = true;
+    	else b = false;
+    	
+    	return b;
+    }
+    
     @Override
     public String toString() {
     	char delimiter = 'T';

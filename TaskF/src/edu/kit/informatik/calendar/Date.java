@@ -190,6 +190,33 @@ public final class Date {
     	return false;
     }
     
+    public boolean isBefore (Date other) {
+    	boolean b;
+    	
+    	if(dateToDays(this) < dateToDays(other)) b = true;
+    	else b = false;
+    	
+    	return b;
+    }
+    
+    public boolean isEqual (Date other) {
+    	boolean b;
+    	
+    	if(dateToDays(this) == dateToDays(other)) b = true;
+    	else b = false;
+    	
+    	return b;
+    }
+    
+    public boolean isAfter (Date other) {
+    	boolean b;
+    	
+    	if(dateToDays(this) > dateToDays(other)) b = true;
+    	else b = false;
+    	
+    	return b;
+    }
+    
     @Override
     public String toString() {
     	char delimiter = '-';
