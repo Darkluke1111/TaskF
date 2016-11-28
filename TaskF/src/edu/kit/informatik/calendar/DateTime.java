@@ -26,11 +26,77 @@ public final class DateTime {
 	}
     
     public DateTime plus(DateTime datetime) {
-    	
+    	Date d = date.plus(datetime.date);
+    	Time t = time.plus(datetime.time);
+    	return new DateTime(d, t);
     }
     
+    public DateTime minus(DateTime datetime) {
+    	Date d = date.minus(datetime.date);
+    	Time t = time.minus(datetime.time);
+    	
+    	return new DateTime(d, t);
+    }
     
+    public DateTime plus(Date date) {
+    	Date d = date.plus(date);
+    	
+    	return new DateTime(d, this.time);
+    }
     
+    public DateTime minus(Date date) {
+    	Date d = date.minus(date);
+    	
+    	return new DateTime(d, this.time);
+    }
+    
+    public DateTime plus(Time time) {
+    	Time t = time.plus(time);
+    	
+    	return new DateTime(this.date, t);
+    }
+    
+    public DateTime minus(Time time) {
+    	Time t = time.minus(time);
+    	
+    	return new DateTime(this.date, t);
+    }
+    
+    public DateTime plusYears(int years) {
+    	Date d = date.plusYears(years);
+    	
+    	return new DateTime(d, this.time);
+    }
+    
+    public DateTime minusYears(int years) {
+    	Date d = date.minusYears(years);
+    	
+    	return new DateTime(d, this.time);
+    }
+    
+    public DateTime plusMonths(int months) {
+    	Date d = date.plusMonths(months);
+    	
+    	return new DateTime(d, this.time);
+    }
+    
+    public DateTime minusMonths(int months) {
+    	Date d = date.minusMonths(months);
+    	
+    	return new DateTime(d, this.time);
+    }
+    
+    public DateTime plusDays(int days) {
+    	Date d = date.plusDays(days);
+    	
+    	return new DateTime(d, this.time);
+    }
+    
+    public DateTime minusDays(int days) {
+    	Date d = date.minusDays(days);
+    	
+    	return new DateTime(d, this.time);
+    }
     
     @Override
     public String toString() {
