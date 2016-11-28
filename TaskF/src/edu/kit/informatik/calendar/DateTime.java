@@ -25,6 +25,13 @@ public final class DateTime {
 		return time;
 	}
     
+    public DateTime plus(DateTime datetime) {
+    	
+    }
+    
+    
+    
+    
     @Override
     public String toString() {
     	char delimiter = 'T';

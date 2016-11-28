@@ -1,7 +1,6 @@
 
 package edu.kit.informatik.calendar;
 
-import javax.annotation.Generated;
 
 /**
  * Represents a date consisting of a year, a {@linkplain Month month} and a day.
@@ -40,6 +39,7 @@ public final class Date {
     public Month getMonth() {
     	return Month.ofIndex(month);
     }
+    
     public int getDayOfYear() {
 
     	int temp = 28;
@@ -80,15 +80,103 @@ public final class Date {
     private static Date DaysToDate(int days) {
     	int year = 0;
     	while(days > 0) {
-    		if(isLeapYear(year)) days -= 366;
-    		else days -= 365;
+    		if(isLeapYear(year) && days >= 366) {
+    			days -= 366;
+    			break;
+    		}
+    		else if(days >= 365) {
+    			days -= 365;
+    			break;
+    		}
     		year++;		
     	}
-    	//TODO
-    	return null;
+    	
+    	int temp = 28;
+    	if(isLeapYear(year)) temp = 29;
+    	
+    	int daysMonth[] = {31,temp,31,30,31,30,31,31,30,31,30,31};
+    	
+    	int month = 0;
+    	
+    	for(int i = 0 ; i < 12; i++) {
+    		while(days > daysMonth[i]) {
+    			month++;
+    			days -= daysMonth[i];
+    		}
+    	}
+    	
+    	return new Date(year, month, days);
     }
     
-    private static boolean isLeapYear(int year) {
+    public Date plus(Date date) {
+    	int sum = 0;
+    	sum = dateToDays(date) + dateToDays(this);
+    	Date result =  DaysToDate(sum);
+    	
+    	return result;
+    }
+    
+    public Date plusYears(int years) {
+    	int sum = years + this.year;
+    	
+    	return new Date(sum, this.month, this.dayOfMonth);
+    }
+    
+    public Date plusMonths(int months) {
+    	int year = 0;
+    	int sum = months + this.month;
+    	while(sum > 12) {
+    		year++;
+    		sum -= 12;
+    	}
+    	year += this.year;
+    	
+    	
+    	return new Date(year, sum, this.dayOfMonth);
+    }
+    
+    public Date plusDays(int days) {
+    	int sum = days + dateToDays(this);
+    	Date result = DaysToDate(sum);
+    	
+    	return result;
+    }
+    
+    public Date minus(Date date) {
+    	int sum = 0;
+    	sum = dateToDays(date) - dateToDays(this);
+    	Date result =  DaysToDate(sum);
+    	
+    	return result;
+    }
+    
+    public Date minusYears(int years) {
+    	int sum = years - this.year;
+    	
+    	return new Date(sum, this.month, this.dayOfMonth);
+    }
+    
+    public Date minusMonths(int months) {
+    	int year = 0;
+    	int sum = this.month - months;
+    	while(sum < 0) {
+    		year--;
+    		sum += 12;
+    	}
+    	year += this.year;
+    	
+    	
+    	return new Date(year, sum, this.dayOfMonth);
+    }
+    
+    public Date minusDays(int days) {
+    	int sum = dateToDays(this) - days;
+    	Date result = DaysToDate(sum);
+    	
+    	return result;
+    }
+
+	private static boolean isLeapYear(int year) {
     	if(year%400 == 0) return true;
     	if(year%4 == 0 && year%100 != 0) return true;
     	
@@ -115,10 +203,11 @@ public final class Date {
     	sb.append(month);
     	sb.append(delimiter);
     	
-    	if(year<10) sb.append(0);
     	sb.append(year);
     	
     	return sb.toString();
     }
+    
+    
     
 }
