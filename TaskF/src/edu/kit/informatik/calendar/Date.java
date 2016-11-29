@@ -79,14 +79,12 @@ public final class Date {
     
     private static Date DaysToDate(int days) {
     	int year = 0;
-    	while(days > 0) {
+    	while(days >= 366 || days >= 365) {
     		if(isLeapYear(year) && days >= 366) {
     			days -= 366;
-    			break;
     		}
     		else if(days >= 365) {
     			days -= 365;
-    			break;
     		}
     		year++;		
     	}
@@ -99,7 +97,7 @@ public final class Date {
     	int month = 0;
     	
     	for(int i = 0 ; i < 12; i++) {
-    		while(days > daysMonth[i]) {
+    		while(days >= daysMonth[i]) {
     			month++;
     			days -= daysMonth[i];
     		}
