@@ -63,9 +63,9 @@ public final class Time {
     }
     
     public Time minus(Time time) {
-    	int resSecond = (second - time.getSecond())%60;
-    	int resMinute = (minute - time.getMinute() + (second - time.getSecond())/60)%60;
-    	int resHour = (hour - time.getHour() + (minute - time.getMinute() + (second - time.getSecond())/60)/60)%24;
+    	int resSecond = (60 + second - time.getSecond())%60;
+    	int resMinute = (60 + minute - time.getMinute() + (60 + second - time.getSecond())/60)%60;
+    	int resHour = (24 + hour - time.getHour() + (60 + minute - time.getMinute() + (60 + second - time.getSecond())/60)/60)%24;
     	
     	return new Time(resHour, resMinute, resSecond);
     }
