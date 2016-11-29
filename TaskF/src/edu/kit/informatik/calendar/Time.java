@@ -67,6 +67,16 @@ public final class Time {
     	int resMinute = (minute - time.getMinute() + (second - time.getSecond())/60)%60;
     	int resHour = (hour - time.getHour() + (minute - time.getMinute() + (second - time.getSecond())/60)/60)%24;
     	
+    	if(resSecond < 0 && resMinute == 0 && resHour == 0) {
+    		resSecond = 60 + resSecond;
+    		resMinute = 59;
+    		resHour = 23;
+    	}
+    	else if(resSecond < 0 || resMinute < 0 || resHour < 0) {
+    		resSecond = 60 + resSecond;
+    		resMinute = 60 + resMinute;
+    		resHour = 24 + resHour;
+    	}
     	return new Time(resHour, resMinute, resSecond);
     }
     

@@ -85,6 +85,11 @@ public class Test {
 		t3 = t1.minus(t2);
 		System.out.println(t1 + " - "  + t2 + " = " + t3);	
 		
+		t1 = new Time(00, 00, 00);
+		t2 = new Time(2, 3, 1);
+		t3 = t1.minus(t2);
+		System.out.println(t1 + " - "  + t2 + " = " + t3);
+		
 		System.out.println("------------------------");
 		System.out.println();
 	}
